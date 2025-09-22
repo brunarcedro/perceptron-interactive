@@ -1,0 +1,32 @@
+{
+  "name": "perceptron-interactive",
+  "version": "1.0.0",
+  "description": "Implementação interativa e educacional do algoritmo Perceptron com visualizações em tempo real",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "perceptron",
+    "machine-learning",
+    "neural-network",
+    "visualization",
+    "education",
+    "javascript",
+    "plotly"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunarcedro/perceptron-interactive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brunarcedro/perceptron-interactive/issues"
+  },
+  "homepage": "https://github.com/brunarcedro/perceptron-interactive#readme",
+  "devDependencies": {},
+  "dependencies": {}
+}

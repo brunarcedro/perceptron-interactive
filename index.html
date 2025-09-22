@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perceptron - Implementação Interativa</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.26.0/plotly.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Perceptron: Implementação Interativa</h1>
+        
+        <div class="info-box">
+            <h4>Sobre o Perceptron</h4>
+            <p>O Perceptron é um classificador linear binário fundamental no aprendizado de máquina.</p>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="dataset-select">Dataset</label>
+                <select id="dataset-select">
+                    <option value="blobs">Blobs Sintéticos</option>
+                    <option value="iris">Iris (Setosa vs Versicolor)</option>
+                    <option value="moons">Moons (Não-linear)</option>
+                    <option value="cancer">Breast Cancer</option>
+                    <option value="noisy">Classificação com Ruído</option>
+                    <option value="custom">Dataset Personalizado</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="learning-rate">Taxa de Aprendizado</label>
+                <input type="range" id="learning-rate" min="0.001" max="1" step="0.001" value="0.01">
+                <div class="range-value" id="lr-value">0.01</div>
+            </div>
+
+            <div class="control-group">
+                <label for="epochs">Épocas</label>
+                <input type="number" id="epochs" min="1" max="500" value="100">
+            </div>
+
+            <div class="control-group">
+                <label for="test-size">Tamanho do Teste (%)</label>
+                <input type="range" id="test-size" min="10" max="50" step="5" value="30">
+                <div class="range-value" id="ts-value">30%</div>
+            </div>
+
+            <div class="control-group" id="noise-control" style="display: none;">
+                <label for="noise-level">Nível de Ruído</label>
+                <input type="range" id="noise-level" min="0" max="0.5" step="0.05" value="0.15">
+                <div class="range-value" id="noise-value">0.15</div>
+            </div>
+
+            <div class="control-group" id="separation-control" style="display: none;">
+                <label for="separation">Separação das Classes</label>
+                <input type="range" id="separation" min="0.5" max="3" step="0.1" value="1.5">
+                <div class="range-value" id="sep-value">1.5</div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-primary" onclick="generateDataset()">Gerar Dataset</button>
+            <button class="btn-secondary" onclick="trainPerceptron()">Treinar Perceptron</button>
+        </div>
+
+        <div class="results" id="results" style="display: none;">
+            <h3>📊 Resultados do Treinamento</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Acurácia Treino</div>
+                    <div class="metric-value" id="train-acc">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Acurácia Teste</div>
+                    <div class="metric-value" id="test-acc">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Convergência</div>
+                    <div class="metric-value" id="convergence">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Tempo (ms)</div>
+                    <div class="metric-value" id="training-time">-</div>
+                </div>
+            </div>
+            
+            <div class="equation-display" id="equation" style="display: none;"></div>
+        </div>
+
+        <div class="plots-container">
+            <div class="plot-wrapper">
+                <div class="plot-title">Dataset e Regiões de Decisão</div>
+                <div id="decision-plot"></div>
+            </div>
+            <div class="plot-wrapper">
+                <div class="plot-title">Convergência do Treinamento</div>
+                <div id="convergence-plot"></div>
+            </div>
+        </div>
+
+        <div class="tab-container">
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="showTab('analysis')">Análise</button>
+                <button class="tab-button" onclick="showTab('confusion')">Matriz de Confusão</button>
+                <button class="tab-button" onclick="showTab('weights')">Pesos e Bias</button>
+            </div>
+            
+            <div id="analysis-tab" class="tab-content active">
+                <div class="info-box" id="dataset-info"></div>
+            </div>
+            
+            <div id="confusion-tab" class="tab-content">
+                <div id="confusion-matrix"></div>
+            </div>
+            
+            <div id="weights-tab" class="tab-content">
+                <div id="weights-visualization"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/perceptron.js"></script>
+    <script src="js/datasets.js"></script>
+    <script src="js/visualization.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
